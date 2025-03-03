@@ -17,5 +17,17 @@ Tools Used:
 
 Design
 
-1. JWT Token Design
+1. Implementing Token and Role Base Authentication
+        Spring Boot
+        JWT
+        MySQL
+
+Browser                         Server
+
+Login ------------------------> Create JWT 
+Send JWT to Browser <---------- Create JWT
+Send JWT to Server -----------> Verify JWT Token
+Send response to Client <------ Verify JWT Token
+
+
 
