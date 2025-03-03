@@ -18,18 +18,18 @@ Tools Used:
 Design
 
 1. Implementing Token and Role Base Authentication
-        Spring Boot     : connecting database to api endpoint
-        JWT             : token creation
-        Intellij/Java   : project framework and dependencies + backend
-        MySQL           : database creation, storage and queries
-        Postman         : testing raw data through api endpoints to database
+        Spring Boot             : connecting database to api endpoint
+        JWT                     : token creation
+        Intellij/Java           : project framework and dependencies + backend
+        MySQL + Workbench       : database creation, storage, testing and queries
+        Postman                 : testing raw data through api endpoints to database
 
-Browser                         Server
+Browser                                 Server
 
-Login ------------------------> Create JWT 
-Send JWT to Browser <---------- Create JWT
-Send JWT to Server -----------> Verify JWT Token
-Send response to Client <------ Verify JWT Token
+Login --------------------------------> Create JWT 
+Send JWT to Browser <------------------ Create JWT
+Send JWT to Server -------------------> Verify JWT Token
+Send response to Client <-------------- Verify JWT Token
 
 
 
