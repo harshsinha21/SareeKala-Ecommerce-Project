@@ -22,8 +22,7 @@ Design
 
 1.      Database and API Integration
 
-        Connect MYSQL database with IntelliJ(Java) for backend development and integrate
-        it with Spring Boot application that exposes API Endpoints.
+        Connect MYSQL database with IntelliJ(Java) for backend development using API Endpoints.
 
         Testing:
         Postman is used to test that data is being sent and processed correctly from API 
@@ -31,8 +30,8 @@ Design
 
 2.      Implementing Token and Role Base Authentication
 
-        Spring Boot             : connecting database to api endpoint
-        JWT                     : token creation
+        Spring Boot             : manage api endpoints and database integration
+        JWT                     : generates and validates tokens
         IntelliJ/Java           : project framework and dependencies + backend
         MySQL + Workbench       : database creation, storage, testing and queries
         Postman                 : testing raw data through api endpoints to database
