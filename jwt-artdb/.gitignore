@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#### KEYS #####
+src/main/java/org/util/*.pem
