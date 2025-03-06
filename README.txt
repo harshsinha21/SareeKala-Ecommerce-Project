@@ -83,3 +83,6 @@ Design
         Send JWT to Server -------------------> Verify JWT Token
         Send response to Client <-------------- Verify JWT Token
 
+        Generated Public and Private Keys in secp521 curve to adhere to the Signature Algorithm 
+        of EC512, the private key is then converted in PKCS8format so that we can sign, validate
+        and generate a JWT Token.
