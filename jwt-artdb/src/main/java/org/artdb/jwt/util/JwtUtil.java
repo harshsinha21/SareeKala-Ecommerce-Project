@@ -2,11 +2,18 @@ package org.artdb.jwt.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +22,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "this_is_a_very_secret_key_shh";
-
+    private static final String PRIVATE_KEY_PATH = "src/main/java/org/artdb/jwt/util/private_key_secp521_pkcs8.pem";
+    private static final String PUBLIC_KEY_PATH = "src/main/java/org/artdb/jwt/util/public_key_secp521.pem";
 
     // Token validity in seconds (5 hours)
     private static final int TOKEN_VALIDITY = 18000;
@@ -24,15 +31,54 @@ public class JwtUtil {
     // Load the EC Private key for signing
     private PrivateKey getPrivateKey() {
         try {
-            // Load your EC private key here (or use a method to read the key from the file)
-            return Keys.keyPairFor(io.jsonwebtoken.SignatureAlgorithm.ES512).getPrivate();
+            System.out.println("Loading private key from path: " + PRIVATE_KEY_PATH);
+            // Load the private key file
+            File keyFile = new File(PRIVATE_KEY_PATH);
+            String privateKeyPEM = new String(Files.readAllBytes(keyFile.toPath()), StandardCharsets.UTF_8);
+
+            // Clean the private key string by removing the headers/footers
+            privateKeyPEM = privateKeyPEM
+                    .replace("-----BEGIN PRIVATE KEY-----", "")
+                    .replace("-----END PRIVATE KEY-----", "");
+
+            // Remove any unwanted whitespace, newlines, or carriage returns
+            privateKeyPEM = privateKeyPEM.replaceAll("\\s+", "");
+
+            // Decode the cleaned Base64 string
+            byte[] decodedKey = Base64.getDecoder().decode(privateKeyPEM);
+
+            // Generate the PrivateKey from the decoded byte array
+            KeyFactory keyFactory = KeyFactory.getInstance("EC");
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(decodedKey);
+            return keyFactory.generatePrivate(keySpec);
+
         } catch (Exception e) {
             throw new RuntimeException("Error loading private key", e);
         }
     }
+
     private PublicKey getPublicKey() {
         try {
-            return Keys.keyPairFor(io.jsonwebtoken.SignatureAlgorithm.ES512).getPublic();
+            // Load the public key file
+            File keyFile = new File(PUBLIC_KEY_PATH);
+            String publicKeyPEM = new String(Files.readAllBytes(keyFile.toPath()), StandardCharsets.UTF_8);
+
+            // Clean the public key string
+            publicKeyPEM = publicKeyPEM
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "");
+
+            // Remove any unwanted newlines or spaces
+            publicKeyPEM = publicKeyPEM.replaceAll("\\s+", "");
+
+            // Decode the cleaned Base64 string
+            byte[] decodedKey = Base64.getDecoder().decode(publicKeyPEM);
+
+            // Generate the PublicKey from the decoded byte array
+            KeyFactory keyFactory = KeyFactory.getInstance("EC");
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(decodedKey);
+            return keyFactory.generatePublic(keySpec);
+
         } catch (Exception e) {
             throw new RuntimeException("Error loading public key", e);
         }
@@ -76,7 +122,7 @@ public class JwtUtil {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
-                .signWith(getPrivateKey(), io.jsonwebtoken.SignatureAlgorithm.ES512)
+                .signWith(getPrivateKey(), SignatureAlgorithm.ES512)
                 .compact();
     }
 }
