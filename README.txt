@@ -16,7 +16,7 @@ Tools Used:
         5. Angular CLI
         6. Node JS
         7. Git
-        8. MSQL + Workbench/Postgres
+        8. MSQL Workbench
 
 Design
 
@@ -63,14 +63,14 @@ Design
 
         Testing:
         Postman is used to test that data is being sent and processed correctly from API 
-        endpoint to MYSQL and queries on MYSQL Workbench to test database is updating. 
+        endpoint and tested using queries on MYSQL Workbench. 
 
 2.      Implementing Token and Role Base Authentication
 
         Spring Boot             : manage api endpoints and database integration
         JWT                     : generates and validates tokens
         IntelliJ/Java           : project framework and dependencies + backend
-        MySQL + Workbench       : database creation, storage, testing and queries
+        MySQL Workbench         : database creation, storage, testing and queries
         Postman                 : testing raw data through api endpoints to database
 
 
