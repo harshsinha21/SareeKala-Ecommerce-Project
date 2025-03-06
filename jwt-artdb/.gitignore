@@ -33,6 +33,4 @@ build/
 .vscode/
 
 #### KEYS #####
-jwt-artdb/src/main/java/org/util/*.pem
-jwt-artdb/src/main/java/org/util/private_key.pem
-jwt-artdb/src/main/java/org/util/public_key.pem
+src/main/java/org/artdb/jwt/util/*.pem
