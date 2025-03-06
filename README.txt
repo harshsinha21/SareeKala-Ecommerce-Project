@@ -20,6 +20,38 @@ Tools Used:
 
 Design
 
+        Backend Architecture:
+
+        ┌──────────────────────────────────┐
+        │         Controller Layer         |  (@Controller)
+        │   - Handles HTTP requests        │
+        │   - Calls Service Layer          │
+        └──────────────┬───────────────────┘
+                       │
+        ┌──────────────▼───────────────────┐
+        │          Service Layer           │  (@Service)
+        │   - Business logic               │
+        │   - Calls DAO (Repository) Layer │
+        └──────────────┬───────────────────┘
+                       │
+        ┌──────────────▼───────────────────┐
+        │          DAO Layer (Repository)  │  (@Dao)
+        │   - Handles database operations  │
+        │   - Uses JPA (Spring Data)       │
+        └──────────────┬───────────────────┘
+                       │
+        ┌──────────────▼───────────────────┐
+        │         Entity Layer             │  (@Entity)
+        │   - Represents Database Table    │
+        │   - Contains fields & mappings   │
+        └──────────────────────────────────┘
+                       │
+        ┌──────────────▼───────────────────┐
+        │          Configuration Layer     │  (@Configuration)
+        │   - Defines Beans (Security, DB) │
+        │   - Handles JWT & Auth settings  │
+        └──────────────────────────────────┘
+
 1.      Database and API Integration
 
         Connect MYSQL database with IntelliJ(Java) for backend development using API Endpoints.
@@ -36,7 +68,8 @@ Design
         MySQL + Workbench       : database creation, storage, testing and queries
         Postman                 : testing raw data through api endpoints to database
 
-        Authentication Flow:
+
+3.      Authentication Flow:
 
         Browser                                 Server
 
@@ -44,6 +77,4 @@ Design
         Send JWT to Browser <------------------ Create JWT
         Send JWT to Server -------------------> Verify JWT Token
         Send response to Client <-------------- Verify JWT Token
-
-
 
