@@ -24,7 +24,7 @@ Design
 
         ┌──────────────────────────────────┐
         │         Controller Layer         |  (@Controller)
-        │   - Handles HTTP requests        │
+        │   - Handles HTTP requests (API)  │
         │   - Calls Service Layer          │
         └──────────────┬───────────────────┘
                        │
@@ -50,6 +50,11 @@ Design
         │          Configuration Layer     │  (@Configuration)
         │   - Defines Beans (Security, DB) │
         │   - Handles JWT & Auth settings  │
+        └──────────────────────────────────┘
+                       |
+        ┌──────────────▼───────────────────┐
+        │          Util Layer              │  (@Util)
+        │   - Common Helper Functions (JWT)│
         └──────────────────────────────────┘
 
 1.      Database and API Integration
