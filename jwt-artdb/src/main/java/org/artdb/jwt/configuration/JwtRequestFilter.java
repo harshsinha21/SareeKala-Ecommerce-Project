@@ -41,8 +41,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = header. substring(7);
 
             try {
-                //Debug Print Log
-                System.out.println("Extracting JWT token: " + jwtToken);
                 userName = jwtUtil.getUserNameFromToken(jwtToken);
                 //Debug Print Log
                 System.out.println("Extracted username from token: " + userName);
@@ -51,8 +49,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             } catch (ExpiredJwtException e) {
                 System.out.println("JwtToken is expired");
             }
-        } else {
-            System.out.println("Jwt token does not start with Bearer");
         }
         if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null)
         {
@@ -60,18 +56,18 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             if(jwtUtil.validateToken(jwtToken, userDetails))
             {
                 //Debug validated Token
-                System.out.println("Token is valid for user: " + userName);
+                System.out.println("User roles: " + userDetails.getAuthorities());
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             } else {
                 //Debug failed Token validation
                 System.out.println("Token validation failed for user: " + userName);
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN); // 403 Forbidden
+                response.getWriter().write("Access Denied: You don't have permission to access this resource");
             }
-        } else {
-            //Debug Token not found
-            System.out.println("User is not authenticated or no token found.");
         }
+
 
         filterChain.doFilter(request, response);
     }
