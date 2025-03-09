@@ -86,3 +86,9 @@ Design
         Generated Public and Private Keys in secp521 curve to adhere to the Signature Algorithm 
         of EC512, the private key is then converted in PKCS8format so that we can sign, validate
         and generate a JWT Token.
+
+4.      Ensure routes for authentication is locked to specific users. E.g. Admin is a superuser and
+        regular user has limited access. Verified authorization of token using Postman.
+
+5.      Building front end UI using Angular CLI with CSS/HTML and Javascript for login
+
