@@ -10,12 +10,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProductsComponent } from './products/products.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { NgModule } from '@angular/core';
+import { authGuard } from './_authorization/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'}, //default route
     { path: 'home', component: HomeComponent },
-    { path: 'admin', component: AdminComponent },
-    { path: 'user', component: UserComponent },
+    { path: 'admin', component: AdminComponent, canActivate: [authGuard], data:{roles:['Admin']} },
+    { path: 'user', component: UserComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
