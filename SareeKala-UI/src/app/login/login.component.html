@@ -1,0 +1,62 @@
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+  
+                  <div class="text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                      style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">Welcome to SareeKala</h4>
+                  </div>
+  
+                  <form #loginForm = "ngForm" (ngSubmit)="login(loginForm)">
+                    
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="text" 
+                      ngModel
+                      name="userName"
+                      class="form-control"
+                      placeholder="Username"/>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="password"
+                      ngModel
+                      name="userPassword" 
+                      class="form-control" 
+                      placeholder="Password"/>
+                    </div>
+  
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block w-100 mb-2 d-block gradient-custom-2" type="submit">Log
+                        in</button>
+                      <a class="text-muted" href="#!">Forgot password?</a>
+                    </div>
+  
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Create new</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">Loom to Legacy: The Art of Sarees</h4>
+                  <p class="small mb-0 indented-paragraph">India's history is a tapestry woven with centuries of tradition, culture, and craftsmanship. From the grand courts of ancient empires to the vibrant festivals of today, its legacy is reflected in everything from architecture to attire. Among the most iconic symbols of Indian heritage is the saree — a garment that has graced generations with its timeless elegance.</p>
+                  <p class="small mb-0 indented-paragraph">Each saree carries the soul of the artisans who create it, blending intricate weaving techniques passed down through families for centuries. Whether it’s the delicate handwoven silk of Banaras, the vibrant block prints of Rajasthan, or the fine embroidery of Bengal, every piece tells a story.</p> 
+                  <p class="small mb-0 indented-paragraph">At SareeKala, we celebrate this craftsmanship by transforming tradition into art.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
