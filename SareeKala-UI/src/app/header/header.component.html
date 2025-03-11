@@ -1,18 +1,18 @@
 <mat-toolbar color="primary">
   <span>SareeKala</span>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" routerLink="/home">
     Home
   </button>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" routerLink="/products">
     Artwork
   </button>
-  <button mat-raised-button color="primary">
-    About
+  <button mat-raised-button color="primary" routerLink="/about">
+    Our Story
   </button>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">
     Admin
   </button>
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" routerLink="/user" *ngIf="userService.roleMatch(['User'])">
     User
   </button>
   <span class="space_login"></span>

@@ -6,9 +6,10 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { LogoutComponent } from './logout/logout.component';
 import { ProductsComponent } from './products/products.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RegisteruserComponent } from './registeruser/registeruser.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { NgModule } from '@angular/core';
 import { authGuard } from './_authorization/auth.guard';
 
@@ -21,8 +22,9 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
     { path: 'forbidden', component: ForbiddenComponent },
-    { path: 'logout', component: LogoutComponent },
     { path: 'products', component: ProductsComponent },
+    { path: 'register', component: RegisteruserComponent },
+    { path: 'forgot', component: ForgotpasswordComponent },
     { path: '**', component: PagenotfoundComponent }
 ];
 

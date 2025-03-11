@@ -1,28 +1,41 @@
-.gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #fccb90;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    }
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-    .indented-paragraph {
-        text-align: justify;  /* Align text for a clean look */
-        text-indent: 20px;    /* Adjust indentation */
-        margin-bottom: 10px;  /* Space between paragraphs */
-      }
-    
-    @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
-    @media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    }
-    }
+button {
+    border-radius: 0 !important;
+}
+
+.themed-text {
+    font-family: var(--mat-typography-font-family, 'Roboto', sans-serif);
+    font-size: 24px;
+}
+
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.full-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    /* Pushes the card down */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    /* Adjust to match your header height */
+}
+
+mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 64px;
+    /* Ensures header has a consistent height */
+}
