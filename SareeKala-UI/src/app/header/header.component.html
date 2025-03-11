@@ -1,4 +1,32 @@
-<nav class="navbar navbar-expand-lg bg-body-secondary">
+<mat-toolbar color="primary">
+  <span>SareeKala</span>
+  <button mat-raised-button color="primary">
+    Home
+  </button>
+  <button mat-raised-button color="primary">
+    Artwork
+  </button>
+  <button mat-raised-button color="primary">
+    About
+  </button>
+  <button mat-raised-button color="primary">
+    Admin
+  </button>
+  <button mat-raised-button color="primary">
+    User
+  </button>
+  <span class="space_login"></span>
+  <button mat-raised-button color="primary" *ngIf="! isLoggedIn()" routerLink="/login">
+    Login
+  </button>
+  <button mat-raised-button color="warn" *ngIf="isLoggedIn()" (click)="logout()">
+    Logout
+  </button>
+</mat-toolbar>
+
+
+
+<!-- <nav class="navbar navbar-expand-lg bg-body-secondary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SareeKala</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -32,4 +60,4 @@
       <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logout</button>
     </div>
   </div>
-</nav>
+</nav> -->

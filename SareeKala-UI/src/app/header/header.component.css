@@ -1,0 +1,11 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+.mat-toolbar button {
+    border-radius: 0 !important;
+}
+
+.space_login {
+    flex: 1 1 auto;
+}
