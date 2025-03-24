@@ -1,5 +1,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+/* @use '@angular/material' as mat; */
+
 
 
 .mat-toolbar button {
@@ -9,3 +11,10 @@
 .space_login {
     flex: 1 1 auto;
 }
+
+/* :root {
+    @include mat.toolbar-overrides((
+      container-background-color: orange,
+      container-text-color: red,
+    ));
+  } */

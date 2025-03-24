@@ -39,7 +39,7 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/authenticate", "/registerNewUser").permitAll()
+                        .requestMatchers("/authenticate", "/registerNewUser", "/addNewProduct").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/authenticate", "/forAdmin", "/forUser", HttpHeaders.ALLOW).permitAll()
                         .anyRequest().authenticated()
                 )

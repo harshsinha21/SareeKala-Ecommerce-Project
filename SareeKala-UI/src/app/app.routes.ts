@@ -12,6 +12,7 @@ import { RegisteruserComponent } from './registeruser/registeruser.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { NgModule } from '@angular/core';
 import { authGuard } from './_authorization/auth.guard';
+import { AddProductComponent } from './add-product/add-product.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'}, //default route
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'products', component: ProductsComponent },
     { path: 'register', component: RegisteruserComponent },
     { path: 'forgot', component: ForgotpasswordComponent },
+    { path: 'addProduct', component: AddProductComponent },
     { path: '**', component: PagenotfoundComponent }
 ];
 
