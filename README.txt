@@ -17,6 +17,7 @@ Tools Used:
         6. Node JS
         7. Git
         8. MSQL Workbench
+        9. Typecript/CSS/HTML
 
 Design
 
@@ -90,5 +91,5 @@ Design
 4.      Ensure routes for authentication is locked to specific users. E.g. Admin is a superuser and
         regular user has limited access. Verified authorization of token using Postman.
 
-5.      Building front end UI using Angular CLI with CSS/HTML and Javascript for login
+5.      Building front end UI using Angular CLI with CSS/HTML and Typecript for login
 
