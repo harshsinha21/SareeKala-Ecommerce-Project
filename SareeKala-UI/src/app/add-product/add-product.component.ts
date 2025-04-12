@@ -44,6 +44,7 @@ export class AddProductComponent implements OnInit {
     this.productService.addProduct(productFormData).subscribe(
       (response: Product) => {
         productForm.reset();
+        this.product.productImages = [];
       },
       (error: HttpErrorResponse) => {
         console.log(error);

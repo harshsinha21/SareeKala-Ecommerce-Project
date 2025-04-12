@@ -28,6 +28,7 @@
 <mat-toolbar *ngIf="isLoggedIn()">
   <button *ngIf="isAdmin()" mat-flat-button color="warn">Delete Product</button>
   <button *ngIf="isAdmin()" mat-flat-button color="accent" routerLink="/addProduct">Add Product</button>
+  <button *ngIf="isAdmin()" mat-flat-button color="accent" routerLink="/showProduct">Show Product</button>
   <button *ngIf="isAdmin()" mat-flat-button color="accent">Update</button>
   <button *ngIf="isUser()" mat-flat-button color="primary">Orders</button>
   <button *ngIf="isUser()" mat-flat-button color="primary">Account</button>
