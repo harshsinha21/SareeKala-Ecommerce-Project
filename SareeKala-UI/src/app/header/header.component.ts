@@ -4,8 +4,8 @@ import { UserAuthService } from '../_services/user-auth.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../_services/user.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-header',

@@ -1,20 +1,12 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-/* @use '@angular/material' as mat; */
-
-
-
 .mat-toolbar button {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  letter-spacing: normal;
+  
 }
+
+
 
 .space_login {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
-
-/* :root {
-    @include mat.toolbar-overrides((
-      container-background-color: orange,
-      container-text-color: red,
-    ));
-  } */

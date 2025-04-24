@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { CommonModule } from '@angular/common';
 import { DragDirective } from '../drag.directive';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,10 @@ import { DragDirective } from '../drag.directive';
   styleUrl: './add-product.component.css'
 })
 export class AddProductComponent implements OnInit {
+  isNewProduct = true;
+
   product: Product = {
+    productId: null,
     productName: "",
     productDesc: "",
     productPrice: 0,
@@ -31,10 +35,18 @@ export class AddProductComponent implements OnInit {
     productImages: []
   }
 
-  constructor(private productService: ProductService, private sanitizer: DomSanitizer) {}
+  constructor(
+    private productService: ProductService, 
+    private sanitizer: DomSanitizer,
+    private activateRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.product = this.activateRoute.snapshot.data['product'];
 
+    if(this.product && this.product.productId) {
+        this.isNewProduct = false;
+    }
   }
 
   addProduct(productForm: NgForm) {

@@ -59,7 +59,8 @@
 
                         <div class="d-flex justify-content-between gap-2 mt-3">
                             <button mat-stroked-button color="warn" class="flex-grow-1">Clear</button>
-                            <button type="submit" mat-stroked-button color="primary" class="flex-grow-1">Submit</button>
+                            <button type="submit" *ngIf="isNewProduct" mat-stroked-button color="primary" class="flex-grow-1">Submit</button>
+                            <button type="submit" *ngIf="!isNewProduct" mat-stroked-button color="primary" class="flex-grow-1">Update</button>
                         </div>
 
                 </form>

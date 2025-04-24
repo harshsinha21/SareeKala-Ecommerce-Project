@@ -36,9 +36,5 @@ public class UserController {
         return "This URL is accessible for user";
     }
 
-//    @RequestMapping(value = "/forAdmin", method = RequestMethod.OPTIONS)
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    public ResponseEntity<Void> preflight() {
-//        return ResponseEntity.ok().build();
-//    }
+
 }

@@ -1,5 +1,10 @@
 <div class="container mt-5">
-    <div class="card text-center" style="padding: 25px;">
-        <h1>This is Home Page!</h1>
-    </div>
+    <mat-grid-list cols="4" rowHeight="2:3" gutterSize="10">
+        <mat-grid-tile *ngFor="let p of productDetails">
+            <div class="row">
+                <img [src]="p.productImages[0].url" alt="">
+            </div>
+        </mat-grid-tile>
+        
+    </mat-grid-list>
 </div>

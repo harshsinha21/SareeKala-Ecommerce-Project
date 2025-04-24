@@ -14,6 +14,8 @@ import { NgModule } from '@angular/core';
 import { authGuard } from './_authorization/auth.guard';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ShowProductComponent } from './show-product/show-product.component';
+import { ProductResolverService } from './product-resolver.service';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'}, //default route
@@ -27,7 +29,7 @@ export const routes: Routes = [
     { path: 'products', component: ProductsComponent },
     { path: 'register', component: RegisteruserComponent },
     { path: 'forgot', component: ForgotpasswordComponent },
-    { path: 'addProduct', component: AddProductComponent, canActivate: [authGuard], data:{roles:['Admin']}  },
+    { path: 'addProduct', component: AddProductComponent, canActivate: [authGuard], data:{roles:['Admin']}, resolve:{product: ProductResolverService}  },
     { path: 'showProduct', component: ShowProductComponent, canActivate: [authGuard], data:{roles:['Admin']}  },
     { path: '**', component: PagenotfoundComponent }
 ];

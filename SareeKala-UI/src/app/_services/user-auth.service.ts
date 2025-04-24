@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Role } from '../_model/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +8,12 @@ export class UserAuthService {
 
   constructor() { }
 
-  public setRoles(roles:[]) {
+
+  public setRoles(roles: Role[]) {
     localStorage.setItem("roles", JSON.stringify(roles));
   }
 
-  public getRoles(): [] {
+  public getRoles(): Role[] {
     if (typeof window !== 'undefined' && localStorage.getItem('roles')) {
       return JSON.parse(localStorage.getItem('roles') || '[]');
     }
