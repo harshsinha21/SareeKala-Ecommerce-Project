@@ -1,12 +1,68 @@
-.mat-toolbar button {
-  border-radius: 0 !important;
+.toolbar-class mat-toolbar {
+  background-color: #fafafa;
+  padding: 0 20px;
+}
+
+.site-title {
+  font-size: 24px;
   font-family: Roboto, "Helvetica Neue", sans-serif !important;
   letter-spacing: normal;
-  
+}
+
+.spacer {
+  flex: 0 0 30px; /* space between title and nav buttons */
+}
+
+.space_login {
+  flex: 1 1 auto; /* pushes login/logout to far right */
+}
+
+.mat-toolbar button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 0.5px;
+  margin: 0 5px;
+}
+
+.neutral-button {
+  background-color: transparent;
+  color: black;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* Primary and Login/Logout buttons stay colorful */
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-stroked-button.mat-primary {
+  background-color: #5c6bc0;
+  color: white;
+}
+
+.mat-stroked-button {
+  border: 1px solid #5c6bc0;
+}
+
+.toolbar-class mat-toolbar {
+  background-color: #fafafa; /* light off-white */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.site-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.spacer, .space_login {
+  flex: 1 1 auto;
 }
 
 
+/* Optional: make neutral buttons on hover a little nicer */
+.neutral-button:hover {
+  background-color: rgba(0, 0, 0, 0.04); /* subtle hover */
+}
 
-.space_login {
-  flex: 1 1 auto;
+.logo-img {
+  height: 40px; /* or whatever size looks good */
+  margin-right: 8px;
+  vertical-align: middle;
 }

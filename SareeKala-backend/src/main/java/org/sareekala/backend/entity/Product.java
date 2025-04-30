@@ -11,6 +11,7 @@ public class Product {
     @Id
     private Integer productId;
     private String productName;
+    @Column(length = 2000)
     private String productDesc;
     private Double productPrice;
     private Double productDiscountedPrice;
@@ -49,6 +50,7 @@ public class Product {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
 
     public String getProductDesc() {
         return productDesc;

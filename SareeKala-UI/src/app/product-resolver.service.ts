@@ -14,6 +14,7 @@ export class ProductResolverService implements Resolve<Product> {
   constructor(private productService: ProductService,
     private imageProcessorService: ImageProcessorService
   ) { }
+  
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
     const id = route.paramMap.get("productId");
     if(id) {

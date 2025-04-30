@@ -5,6 +5,7 @@ import org.sareekala.backend.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,5 +29,18 @@ public class ProductService {
 
     public void deleteProduct(Integer productId) {
         productDao.deleteById(productId);
+    }
+
+    public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId) {
+        if(isSingleProductCheckout) {
+            List<Product> list = new ArrayList<>();
+            Product product = productDao.findById(productId).get();
+            list.add(product);
+            return list;
+        } else {
+
+        }
+
+        return new ArrayList<>();
     }
 }

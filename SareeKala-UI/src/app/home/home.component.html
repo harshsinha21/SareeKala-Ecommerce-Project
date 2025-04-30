@@ -1,10 +1,19 @@
 <div class="container mt-5">
     <mat-grid-list cols="4" rowHeight="2:3" gutterSize="10">
-        <mat-grid-tile *ngFor="let p of productDetails">
-            <div class="row">
-                <img [src]="p.productImages[0].url" alt="">
+      <mat-grid-tile *ngFor="let p of productDetails">
+        <div class="tile-wrapper">
+          <div class="home-page-product">
+            <div class="product-image-container">
+              <img class="product-image" [src]="p.productImages[0].url" alt="{{p.productName}}">
             </div>
-        </mat-grid-tile>
-        
+            <div class="product-info mt-3">
+              <p class="product-name">{{p.productName}}</p>
+              <p class="product-price">${{p.productPrice}}</p>
+              <button type="button" mat-raised-button class="view-details-btn" (click)="showProductDetails(p.productId)">View Details</button>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
     </mat-grid-list>
-</div>
+  </div>
+  

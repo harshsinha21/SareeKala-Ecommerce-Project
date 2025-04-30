@@ -1,34 +1,53 @@
-<mat-toolbar color="primary" class="roboto-toolbar">
-  <span>SareeKala</span>
-  <button mat-raised-button color="primary" routerLink="/home">
-    Home
-  </button>
-  <button mat-raised-button color="primary" routerLink="/products">
-    Artwork
-  </button>
-  <button mat-raised-button color="primary" routerLink="/about">
-    Our Story
-  </button>
-  <button mat-raised-button color="primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">
-    Admin
-  </button>
-  <button mat-raised-button color="primary" routerLink="/user" *ngIf="userService.roleMatch(['User'])">
-    User
-  </button>
-  <span class="space_login"></span>
-  <button mat-raised-button color="primary" *ngIf="! isLoggedIn()" routerLink="/login">
-    Login
-  </button>
-  <button mat-raised-button color="warn" *ngIf="isLoggedIn()" (click)="logout()">
-    Logout
-  </button>
-</mat-toolbar>
+<div class="toolbar-class">
+  <!-- FIRST TOOLBAR -->
+  <mat-toolbar class="roboto-toolbar">
+    <img src="/lotus.webp" class="logo-img"/>
+    <span class="site-title">SareeKala</span>
 
+    <span class="spacer"></span>
 
-<mat-toolbar *ngIf="isLoggedIn()">
-  <button *ngIf="isAdmin()" mat-flat-button color="accent" routerLink="/addProduct">Add Product</button>
-  <button *ngIf="isAdmin()" mat-flat-button color="accent" routerLink="/showProduct">Show Product</button>
-  <button *ngIf="isUser()" mat-flat-button color="primary">Orders</button>
-  <button *ngIf="isUser()" mat-flat-button color="primary">Account</button>
-  <button *ngIf="isUser()" mat-flat-button color="primary">Cart</button>
-</mat-toolbar>
+    <button mat-button class="neutral-button" routerLink="/home">
+      Home
+    </button>
+    <button mat-button class="neutral-button" routerLink="/products">
+      Artwork
+    </button>
+    <button mat-button class="neutral-button" routerLink="/about">
+      Our Story
+    </button>
+
+    <span class="space_login"></span>
+
+    <button mat-stroked-button color="primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">
+      Admin
+    </button>
+    <button mat-stroked-button color="primary" routerLink="/user" *ngIf="userService.roleMatch(['User'])">
+      User
+    </button>
+    <button mat-stroked-button color="primary" *ngIf="!isLoggedIn()" routerLink="/login">
+      Login
+    </button>
+    <button mat-stroked-button color="warn" *ngIf="isLoggedIn()" (click)="logout()">
+      Logout
+    </button>
+  </mat-toolbar>
+
+  <!-- SECOND TOOLBAR (only shown if logged in) -->
+  <mat-toolbar class="roboto-toolbar" *ngIf="isLoggedIn()">
+    <button *ngIf="isAdmin()" mat-button class="neutral-button2" color="primary" routerLink="/addProduct">
+      Add Product
+    </button>
+    <button *ngIf="isAdmin()" mat-button class="neutral-button2" color="primary" routerLink="/showProduct">
+      Show Product
+    </button>
+    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/orders">
+      Orders
+    </button>
+    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/account">
+      Account
+    </button>
+    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/cart">
+      Cart
+    </button>
+  </mat-toolbar>
+</div>

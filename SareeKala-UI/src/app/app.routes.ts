@@ -15,6 +15,10 @@ import { authGuard } from './_authorization/auth.guard';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ShowProductComponent } from './show-product/show-product.component';
 import { ProductResolverService } from './product-resolver.service';
+import { ViewDetailsComponent } from './view-details/view-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { BuyProductResolverService } from './buy-product-resolver.service';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 
 export const routes: Routes = [
@@ -31,6 +35,9 @@ export const routes: Routes = [
     { path: 'forgot', component: ForgotpasswordComponent },
     { path: 'addProduct', component: AddProductComponent, canActivate: [authGuard], data:{roles:['Admin']}, resolve:{product: ProductResolverService}  },
     { path: 'showProduct', component: ShowProductComponent, canActivate: [authGuard], data:{roles:['Admin']}  },
+    { path: 'viewDetails', component: ViewDetailsComponent, resolve:{product: ProductResolverService}  },
+    { path: 'buyProduct', component: BuyProductComponent, canActivate: [authGuard], data:{roles:['User']}, resolve:{productDetails: BuyProductResolverService}  },
+    { path: 'order-success', component: OrderSuccessComponent },
     { path: '**', component: PagenotfoundComponent }
 ];
 

@@ -55,7 +55,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @PreAuthorize("hasRole('Admin')")
+    //@PreAuthorize("hasRole('Admin')")
     @GetMapping({"/getProductById/{productId}"})
     public Product getProductById(@PathVariable("productId") Integer productId) {
         return productService.getProductById(productId);
@@ -67,4 +67,11 @@ public class ProductController {
         productService.deleteProduct(productId);
     }
 
+    @PreAuthorize("hasRole('User')")
+    @GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
+    public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
+                                           @PathVariable(name = "productId") Integer productId) {
+
+        return productService.getProductDetails(isSingleProductCheckout, productId);
+    }
 }
