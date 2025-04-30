@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="order-card card p-4">
-          
+
         <div class="row">
             <div class="col-md-6">
                 <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
@@ -22,17 +22,52 @@
                             placeholder="Mobile number">
                     </mat-form-field>
 
-                    <button type="submit" mat-flat-button color="primary" class="place-order-btn" >
+                    <button type="submit" mat-flat-button color="primary" class="place-order-btn">
                         Place Order
                     </button>
                 </form>
             </div>
 
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="order-text ms-md-4">
-                    <h5 class="mb-3">Complete Your Purchase</h5>
-                    <p class="text-muted">Please enter your shipping information. We handle your art with care and
-                        deliver with attention to detail.</p>
+            <div class="col-md-6">
+                <div class="order-summary ps-md-4">
+                    <h5 class="mb-3">Order Summary</h5>
+                    <mat-divider class="my-3"></mat-divider>
+
+                    <table class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of productDetails">
+                                <td>{{ product.productName }}</td>
+                                <td>{{ product.productPrice | currency }}</td>
+                                <td>
+                                    <select #quantity
+                                        class="form-select form-select-sm w-auto mx-auto"
+                                        [ngModel]="getQuantityForProduct(product.productId)"
+                                        (change)="onQuantityChange(quantity.value, product.productId)">
+                                        <option *ngFor="let qty of [1,2,3]" [value]="qty">{{ qty }}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    {{getTotalForProduct(product.productId, product.productPrice) | currency}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total: </td>
+                                <td>{{getTotalBill() | currency}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
                 </div>
             </div>
         </div>

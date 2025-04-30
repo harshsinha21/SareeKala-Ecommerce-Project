@@ -37,7 +37,7 @@ export const routes: Routes = [
     { path: 'showProduct', component: ShowProductComponent, canActivate: [authGuard], data:{roles:['Admin']}  },
     { path: 'viewDetails', component: ViewDetailsComponent, resolve:{product: ProductResolverService}  },
     { path: 'buyProduct', component: BuyProductComponent, canActivate: [authGuard], data:{roles:['User']}, resolve:{productDetails: BuyProductResolverService}  },
-    { path: 'order-success', component: OrderSuccessComponent },
+    { path: 'order-success', component: OrderSuccessComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: '**', component: PagenotfoundComponent }
 ];
 

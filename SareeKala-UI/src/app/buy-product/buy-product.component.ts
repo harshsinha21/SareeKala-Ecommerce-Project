@@ -11,13 +11,15 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { AboutComponent } from "../about/about.component";
 
 
 @Component({
   selector: 'app-buy-product',
   standalone: true,
   imports: [CommonModule, FormsModule, MatFormFieldModule,
-      MatInputModule, MatCardModule, MatButtonModule, MatGridListModule, RouterModule],
+    MatInputModule, MatCardModule, MatButtonModule, MatGridListModule, RouterModule, MatDividerModule],
   templateUrl: './buy-product.component.html',
   styleUrl: './buy-product.component.css'
 })
@@ -61,5 +63,39 @@ export class BuyProductComponent implements OnInit {
       }
     );
   }
+
+  getQuantityForProduct(productId: any) {
+    const product = this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) => productQuantity.productId === productId);
+
+    return product[0].quantity;
+  }
+
+  getTotalForProduct(productId: any, productPrice: number) {
+    const product = this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) => productQuantity.productId === productId);
+
+    return product[0].quantity * productPrice;
+  }
+
+  onQuantityChange(quantity: any, productId: any){
+    this.orderDetails.orderProductQuantityList.filter(
+      (orderProduct) => orderProduct.productId === productId)[0].quantity = quantity;
+  }
+
+  getTotalBill(){
+    let getTotal = 0;
+    this.orderDetails.orderProductQuantityList.forEach(
+      (productQuantity) => {
+        const price = this.productDetails.filter(
+          product => product.productId === productQuantity.productId)[0].productPrice;
+        const productTotal = price * productQuantity.quantity; 
+        getTotal += productTotal;
+      }
+    );
+    return getTotal;
+  }
+
+  
 
 }

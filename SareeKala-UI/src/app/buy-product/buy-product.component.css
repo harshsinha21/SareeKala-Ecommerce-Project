@@ -1,35 +1,61 @@
 .order-card {
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    background-color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .form-field {
-    font-size: 1rem;
-  }
-  
-  .place-order-btn {
-    padding: 12px 24px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .place-order-btn:hover {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .order-text h5 {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  
-  .order-text p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h5 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+}
+
+select.form-select-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.place-order-btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.order-summary {
+  background-color: #fafafa;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.order-summary h5 {
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.text-end h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
