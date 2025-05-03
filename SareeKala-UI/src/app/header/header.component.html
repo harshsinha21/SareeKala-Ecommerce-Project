@@ -1,30 +1,27 @@
 <div class="toolbar-class">
   <!-- FIRST TOOLBAR -->
-  <mat-toolbar class="roboto-toolbar">
-    <img src="/lotus.webp" class="logo-img"/>
+  <mat-toolbar class="roboto-toolbar toolbar-with-search">
+    <img src="/lotus.webp" class="logo-img" />
     <span class="site-title">SareeKala</span>
 
+    <!-- Add spacing between title and search -->
     <span class="spacer"></span>
 
-    <button mat-button class="neutral-button" routerLink="/home">
-      Home
-    </button>
-    <button mat-button class="neutral-button" routerLink="/products">
-      Artwork
-    </button>
-    <button mat-button class="neutral-button" routerLink="/about">
-      Our Story
-    </button>
+    <!-- NAV BUTTONS -->
+    <button mat-button class="neutral-button" (click)="goHome()">Home</button>
+    <button mat-button class="neutral-button" (click)="goProducts()">Artwork</button>
+    <button mat-button class="neutral-button" (click)="goAbout()">Our Story</button>
 
     <span class="space_login"></span>
 
-    <button mat-stroked-button color="primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">
+    <!-- Admin/User buttons -->
+    <!-- <button mat-stroked-button color="primary" (click)="goAdmin()" *ngIf="userService.roleMatch(['Admin'])">
       Admin
     </button>
-    <button mat-stroked-button color="primary" routerLink="/user" *ngIf="userService.roleMatch(['User'])">
+    <button mat-stroked-button color="primary" (click)="goUser()" *ngIf="userService.roleMatch(['User'])">
       User
-    </button>
-    <button mat-stroked-button color="primary" *ngIf="!isLoggedIn()" routerLink="/login">
+    </button> -->
+    <button mat-stroked-button color="primary" *ngIf="!isLoggedIn()" (click)="goLogin()">
       Login
     </button>
     <button mat-stroked-button color="warn" *ngIf="isLoggedIn()" (click)="logout()">
@@ -33,21 +30,36 @@
   </mat-toolbar>
 
   <!-- SECOND TOOLBAR (only shown if logged in) -->
-  <mat-toolbar class="roboto-toolbar" *ngIf="isLoggedIn()">
-    <button *ngIf="isAdmin()" mat-button class="neutral-button2" color="primary" routerLink="/addProduct">
-      Add Product
-    </button>
-    <button *ngIf="isAdmin()" mat-button class="neutral-button2" color="primary" routerLink="/showProduct">
-      Show Product
-    </button>
-    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/orders">
-      Orders
-    </button>
-    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/account">
-      Account
-    </button>
-    <button *ngIf="isUser()" mat-button class="neutral-button2" color="primary" routerLink="/cart">
-      Cart
-    </button>
+  <mat-toolbar class="roboto-toolbar secondary-toolbar">
+    <div *ngIf="isLoggedIn()">
+      <button *ngIf="isAdmin()" mat-button class="neutral-button2" (click)="addProduct()">
+        Add Product
+      </button>
+      <button *ngIf="isAdmin()" mat-button class="neutral-button2" (click)="showProduct()">
+        Show Product
+      </button>
+      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="orders()">
+        Orders
+      </button>
+      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="accounts()">
+        Account
+      </button>
+      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="cart()">
+        Cart
+      </button>
+    </div>
+
+    <span class="space_search"></span>
+
+    <!-- SEARCH BAR -->
+    <mat-form-field appearance="outline" class="header-search-field">
+      <mat-label>Search products...</mat-label>
+      <input matInput name="searchQuery" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" (ngModelChange)="onSearchChange()"
+        placeholder="Search by name, artist, or category" />
+      <mat-icon matPrefix>search</mat-icon>
+      <button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </mat-toolbar>
 </div>

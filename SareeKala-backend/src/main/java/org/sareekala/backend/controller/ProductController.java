@@ -51,8 +51,10 @@ public class ProductController {
 
     //@PreAuthorize("hasRole('Admin')")
     @GetMapping({"/getAllProducts"})
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pagenumber, @RequestParam(defaultValue = "") String searchKey) {
+        List<Product> result = productService.getAllProducts(pagenumber, searchKey);
+        System.out.println("Result size is " + result.size());
+        return result;
     }
 
     //@PreAuthorize("hasRole('Admin')")

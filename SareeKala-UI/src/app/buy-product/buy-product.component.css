@@ -50,9 +50,9 @@ select.form-select-sm {
   padding: 16px;
 }
 
-.order-summary h5 {
+.order-summary h3 {
   margin-bottom: 16px;
-  font-weight: 600;
+  font-weight: 200;
 }
 
 .text-end h6 {

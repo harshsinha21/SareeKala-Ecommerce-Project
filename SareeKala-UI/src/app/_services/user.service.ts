@@ -21,6 +21,10 @@ export class UserService {
     return this.httpclient.post(this.PATH_OF_API + '/authenticate', loginData, { headers: this.requestHeader });
   }
 
+  public register(registrationForm: any) {
+    return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', registrationForm);
+  }
+
   public forUser() {
     const token = this.userAuthService.getToken(); // Get token from localStorage
     console.log('Attempting to call /forUser'); // Log request attempt

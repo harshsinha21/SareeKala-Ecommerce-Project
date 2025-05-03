@@ -1,22 +1,32 @@
+/* --- Primary Toolbar (Top) --- */
+.toolbar-class {
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 .toolbar-class mat-toolbar {
-  background-color: #fafafa;
-  padding: 0 20px;
+  padding: 0 32px;
+  max-width: 100%;
+  background-color: #ffffff; /* pure white for clean aesthetic */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* --- Logo and Title --- */
+.logo-img {
+  height: 36px;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 .site-title {
   font-size: 24px;
-  font-family: Roboto, "Helvetica Neue", sans-serif !important;
-  letter-spacing: normal;
+  font-weight: 600;
+  color: #333;
+  margin-right: 24px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.spacer {
-  flex: 0 0 30px; /* space between title and nav buttons */
-}
-
-.space_login {
-  flex: 1 1 auto; /* pushes login/logout to far right */
-}
-
+/* --- Button Styling --- */
 .mat-toolbar button {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 0.5px;
@@ -25,13 +35,23 @@
 
 .neutral-button {
   background-color: transparent;
-  color: black;
+  color: #333;
   font-weight: 500;
   font-size: 15px;
+  text-transform: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-/* Primary and Login/Logout buttons stay colorful */
-.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-stroked-button.mat-primary {
+.neutral-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Primary (colored) buttons */
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-stroked-button.mat-primary {
   background-color: #5c6bc0;
   color: white;
 }
@@ -40,29 +60,47 @@
   border: 1px solid #5c6bc0;
 }
 
-.toolbar-class mat-toolbar {
-  background-color: #fafafa; /* light off-white */
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.site-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-}
-
-.spacer, .space_login {
+/* --- Flex spacing --- */
+.spacer {
   flex: 1 1 auto;
 }
 
-
-/* Optional: make neutral buttons on hover a little nicer */
-.neutral-button:hover {
-  background-color: rgba(0, 0, 0, 0.04); /* subtle hover */
+.space_login {
+  margin-left: auto;
 }
 
-.logo-img {
-  height: 40px; /* or whatever size looks good */
-  margin-right: 8px;
-  vertical-align: middle;
+/* --- Secondary Toolbar (Bottom Row) --- */
+.secondary-toolbar {
+  display: flex;
+  flex-wrap: nowrap; /* <-- don't wrap unless absolutely needed */
+  justify-content: flex-start; /* <-- left-aligned instead of spaced out */
+  gap: 16px;
+  padding: 0 32px;
+  min-height: 56px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+
+.space_search {
+  flex-grow: 1;
+}
+
+/* --- Search Field --- */
+.header-search-field {
+  flex: 1 1 auto;
+  min-width: 10%;
+}
+
+.header-search-field .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.header-search-field .mat-form-field-flex {
+  align-items: center;
+  height: 40px;
+}
+
+
+

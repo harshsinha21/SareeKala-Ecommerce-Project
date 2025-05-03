@@ -42,7 +42,7 @@ export class ShowProductComponent implements OnInit {
     }
 
     public getAllProducts() {
-      this.productService.getAllProducts()
+      this.productService.getAllProducts(0)
       .pipe(map((x: Product[], i) => 
         x.map((product: Product) => 
           this.imageProcessorService.createImages(product))))

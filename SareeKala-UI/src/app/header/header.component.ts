@@ -6,20 +6,45 @@ import { UserService } from '../_services/user.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { Product } from '../_model/product.model';
+import { SearchService } from '../_services/search.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, CommonModule, MatToolbarModule, MatButtonModule, MatDividerModule],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatDividerModule, MatGridListModule, MatInputModule, MatIconModule, MatFormFieldModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
+
+  searchSubject: Subject<string> = new Subject();
+
+  searchQuery: string = '';
+  allProducts: Product[] = [];
+  productDetails: Product[] = [];
+  
   constructor(
     private userAuthService: UserAuthService,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    private searchService: SearchService
   ) { }
   ngOnInit(): void {
+    this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe((query) => {
+      this.searchService.setSearchQuery(query);
+    });
+    this.loadProducts();
   }
 
   public isLoggedIn() {
@@ -35,4 +60,73 @@ export class HeaderComponent implements OnInit {
   public isUser() {
     return this.userAuthService.isUser();
   }
+
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goProducts() {
+    this.router.navigate(['/products']);
+  }
+
+  goAbout() {
+    this.router.navigate(['/about']);
+  }
+
+  goAdmin() {
+    this.router.navigate(['/admin']);
+  }
+
+  goUser() {
+    this.router.navigate(['/user']);
+  }
+
+  goLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  addProduct() {
+    this.router.navigate(['/addProduct']);
+  }
+
+  showProduct() {
+    this.router.navigate(['/showProduct']);
+  }
+
+  orders() {
+    this.router.navigate(['/orders']);
+  }
+
+  accounts() {
+    this.router.navigate(['/account']);
+  }
+
+  cart() {
+    this.router.navigate(['/cart']);
+  }
+
+  loadProducts() {
+    // However you're currently loading products, store in both arrays
+    this.router.navigate(['/home']);
+  }
+  
+  onSearchChange() {
+    // Optional: you could debounce this if you want "live" searching
+    this.searchSubject.next(this.searchQuery);
+  }
+  
+  onSearch() {
+    this.searchService.setSearchQuery(this.searchQuery);
+    this.router.navigate(['/home']);
+  }
+  
+  clearSearch() {
+    this.searchQuery = '';
+    this.searchService.setSearchQuery('');
+    this.router.navigate(['/home']);
+  }
+
+
+
+
 }

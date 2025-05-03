@@ -3,33 +3,43 @@
 
         <div class="row">
             <div class="col-md-6">
-                <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
-                    <mat-form-field appearance="outline" class="form-field w-100 mb-3">
-                        <mat-label>Name</mat-label>
-                        <input matInput [(ngModel)]="orderDetails.fullName" type="text" name="fullName"
-                            placeholder="Your full name">
-                    </mat-form-field>
+                <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)" novalidate>
 
                     <mat-form-field appearance="outline" class="form-field w-100 mb-3">
-                        <mat-label>Address</mat-label>
-                        <input matInput [(ngModel)]="orderDetails.fullAddress" type="text" name="fullAddress"
-                            placeholder="Shipping address">
+                      <mat-label>Name</mat-label>
+                      <input matInput name="fullName" [(ngModel)]="orderDetails.fullName"
+                             required #fullName="ngModel" placeholder="Your full name">
+                      <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
                     </mat-form-field>
-
+                  
+                    <mat-form-field appearance="outline" class="form-field w-100 mb-3">
+                      <mat-label>Address</mat-label>
+                      <input matInput name="fullAddress" [(ngModel)]="orderDetails.fullAddress"
+                             required #fullAddress="ngModel" placeholder="Shipping address">
+                      <mat-error *ngIf="fullAddress.invalid && fullAddress.touched">Address is required</mat-error>
+                    </mat-form-field>
+                  
                     <mat-form-field appearance="outline" class="form-field w-100 mb-4">
-                        <mat-label>Phone Number</mat-label>
-                        <input matInput [(ngModel)]="orderDetails.contactNumber" type="text" name="contactNumber"
-                            placeholder="Mobile number">
+                      <mat-label>Phone Number</mat-label>
+                      <input matInput name="contactNumber" [(ngModel)]="orderDetails.contactNumber"
+                             required pattern="^[0-9]{10}$" #contactNumber="ngModel"
+                             placeholder="10-digit mobile number">
+                      <mat-error *ngIf="contactNumber.invalid && contactNumber.touched">
+                        Phone number must be 10 digits
+                      </mat-error>
                     </mat-form-field>
-
-                    <button type="submit" mat-flat-button color="primary" class="place-order-btn">
-                        Place Order
+                  
+                    <button type="submit" mat-flat-button color="primary" class="place-order-btn"
+                            [disabled]="orderForm.invalid">
+                      Place Order
                     </button>
-                </form>
+                  
+                  </form>
+                  
             </div>
 
             <div class="col-md-6">
-                <div class="order-summary ps-md-4">
+                <div class="order-summary">
                     <h5 class="mb-3">Order Summary</h5>
                     <mat-divider class="my-3"></mat-divider>
 
