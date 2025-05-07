@@ -14,8 +14,16 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public markAsDelivered(orderId: number) {
+    return this.httpClient.get("http://localhost:9090/updateOrderStatus/" + orderId);
+  }
+
+  public getAllOrders(status: string): Observable<OrderHistory[]> {
+    return this.httpClient.get<OrderHistory[]>("http://localhost:9090/getAllOrderDetails/" + status);
+  }
+
   public getMyOrders(): Observable<OrderHistory[]> {
-    return this.httpClient.get<OrderHistory[]>("http://localhost:9090/getOrderDetails")
+    return this.httpClient.get<OrderHistory[]>("http://localhost:9090/getOrderDetails");
   }
 
   public addProduct(product: FormData) {

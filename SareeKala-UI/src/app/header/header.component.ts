@@ -120,6 +120,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  allOrders() {
+    this.router.navigate(['/allOrders']);
+  }
 
 
 

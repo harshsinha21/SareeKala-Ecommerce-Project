@@ -21,6 +21,7 @@ import { BuyProductResolverService } from './buy-product-resolver.service';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { CartComponent } from './cart/cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
 
 
 export const routes: Routes = [
@@ -41,6 +42,7 @@ export const routes: Routes = [
     { path: 'order-success', component: OrderSuccessComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'cart', component: CartComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'myorders', component: MyOrdersComponent, canActivate: [authGuard], data:{roles:['User']} },
+    { path: 'allOrders', component: AllOrdersComponent, canActivate: [authGuard], data:{roles:['Admin']} },
     { path: '**', component: PagenotfoundComponent }
 ];
 

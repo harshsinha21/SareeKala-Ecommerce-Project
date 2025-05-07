@@ -40,6 +40,9 @@
       <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="orders()">
         Orders
       </button>
+      <button *ngIf="isAdmin()" mat-button class="neutral-button2" (click)="allOrders()">
+        All Orders
+      </button>
       <!-- <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="accounts()">
         Account
       </button> -->

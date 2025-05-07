@@ -1,0 +1,63 @@
+<div class="container mt-5">
+
+    <!-- Filter Dropdown -->
+    <div class="filter-bar mb-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Filter by Status</mat-label>
+        <mat-select [(value)]="status" (selectionChange)="getAllOrders()">
+          <mat-option value="All">All</mat-option>
+          <mat-option value="Placed">Placed</mat-option>
+          <mat-option value="Delivered">Delivered</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <!-- Orders Table -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Column Definitions -->
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef> Order # </th>
+        <td mat-cell *matCellDef="let element">{{ element.orderId }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Product Name">
+        <th mat-header-cell *matHeaderCellDef> Product </th>
+        <td mat-cell *matCellDef="let element">{{ element.product.productName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element">{{ element.user.userFirstName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element">{{ element.orderFullOrder }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef> Phone </th>
+        <td mat-cell *matCellDef="let element">{{ element.orderContactNumber }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">{{ element.orderStatus }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Update Status </th>
+        <td mat-cell *matCellDef="let element" class="action-cell">
+          <button *ngIf="element.orderStatus == 'Placed'" mat-icon-button color="primary" (click)="markAsDelivered(element.orderId)">
+            <mat-icon>check</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+    </table>
+  </div>
+  
