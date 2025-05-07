@@ -1,7 +1,9 @@
 package org.sareekala.backend.service;
 
 import org.aspectj.weaver.ast.Or;
+import org.hibernate.query.Order;
 import org.sareekala.backend.configuration.JwtRequestFilter;
+import org.sareekala.backend.dao.CartDao;
 import org.sareekala.backend.dao.OrderDetailDao;
 import org.sareekala.backend.dao.ProductDao;
 import org.sareekala.backend.dao.UserDao;
@@ -9,6 +11,7 @@ import org.sareekala.backend.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,7 +28,25 @@ public class OrderDetailService {
     @Autowired
     private UserDao userDao;
 
-    public void placeOrder(OrderInput orderInput) {
+    @Autowired
+    private CartDao cartDao;
+
+    public List<OrderDetail> getOrderDetails() {
+        String username = JwtRequestFilter.CURRENT_USER;
+        User user = userDao.findById(username).get();
+
+        return orderDetailDao.findByUser(user);
+    }
+
+    public List<OrderDetail> getAllOrderDetails() {
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        orderDetailDao.findAll().forEach(
+                x -> orderDetails.add(x)
+        );
+        return orderDetails;
+    }
+
+    public void placeOrder(OrderInput orderInput, boolean isSingleProductCheckout) {
         List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
 
         for(OrderProductQuantity o: productQuantityList)
@@ -44,6 +65,11 @@ public class OrderDetailService {
                     user
 
             );
+
+            if(!isSingleProductCheckout) {
+                List<Cart> cartItems = cartDao.findByUser(user);
+                cartItems.stream().forEach(x -> cartDao.deleteById(x.getCartId()));
+            }
 
             orderDetailDao.save(orderDetail);
         }

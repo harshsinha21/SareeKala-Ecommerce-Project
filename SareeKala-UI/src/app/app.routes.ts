@@ -19,6 +19,8 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
 import { BuyProductResolverService } from './buy-product-resolver.service';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { CartComponent } from './cart/cart.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 export const routes: Routes = [
@@ -30,7 +32,6 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
     { path: 'forbidden', component: ForbiddenComponent },
-    { path: 'products', component: ProductsComponent },
     { path: 'register', component: RegisteruserComponent },
     { path: 'forgot', component: ForgotpasswordComponent },
     { path: 'addProduct', component: AddProductComponent, canActivate: [authGuard], data:{roles:['Admin']}, resolve:{product: ProductResolverService}  },
@@ -38,6 +39,8 @@ export const routes: Routes = [
     { path: 'viewDetails', component: ViewDetailsComponent, resolve:{product: ProductResolverService}  },
     { path: 'buyProduct', component: BuyProductComponent, canActivate: [authGuard], data:{roles:['User']}, resolve:{productDetails: BuyProductResolverService}  },
     { path: 'order-success', component: OrderSuccessComponent, canActivate: [authGuard], data:{roles:['User']} },
+    { path: 'cart', component: CartComponent, canActivate: [authGuard], data:{roles:['User']} },
+    { path: 'myorders', component: MyOrdersComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: '**', component: PagenotfoundComponent }
 ];
 

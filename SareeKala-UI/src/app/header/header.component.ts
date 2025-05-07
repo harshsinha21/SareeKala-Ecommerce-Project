@@ -65,10 +65,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  goProducts() {
-    this.router.navigate(['/products']);
-  }
-
   goAbout() {
     this.router.navigate(['/about']);
   }
@@ -94,24 +90,22 @@ export class HeaderComponent implements OnInit {
   }
 
   orders() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/myorders']);
   }
 
-  accounts() {
-    this.router.navigate(['/account']);
-  }
+  // accounts() {
+  //   this.router.navigate(['/account']);
+  // }
 
   cart() {
     this.router.navigate(['/cart']);
   }
 
   loadProducts() {
-    // However you're currently loading products, store in both arrays
     this.router.navigate(['/home']);
   }
   
   onSearchChange() {
-    // Optional: you could debounce this if you want "live" searching
     this.searchSubject.next(this.searchQuery);
   }
   

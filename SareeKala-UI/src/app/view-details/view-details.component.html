@@ -14,7 +14,8 @@
           <h2 class="product-title mb-3">{{ product.productName }}</h2>
           <p class="product-description mb-4">{{ product.productDesc }}</p>
           <h4 class="product-price text-muted">${{ product.productPrice }}</h4>
-          <button type="button" mat-raised-button class="btn-add-to-cart" (click)="buyProduct(product.productId)">ADD TO CART</button>
+          <button type="button" mat-raised-button class="btn-add-to-cart" (click)="buyProduct(product.productId)">BUY NOW</button>
+        ` <button type="button" mat-raised-button class="btn-add-to-cart" (click)="addToCart(product.productId)">ADD TO CART</button>
         </div>
       </div>
     </div>

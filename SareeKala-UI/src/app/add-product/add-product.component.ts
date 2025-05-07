@@ -32,6 +32,7 @@ export class AddProductComponent implements OnInit {
     productDesc: "",
     productPrice: 0,
     productDiscountedPrice: 0,
+    quantity: 0,
     productImages: []
   }
 

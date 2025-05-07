@@ -6,36 +6,35 @@
                 <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)" novalidate>
 
                     <mat-form-field appearance="outline" class="form-field w-100 mb-3">
-                      <mat-label>Name</mat-label>
-                      <input matInput name="fullName" [(ngModel)]="orderDetails.fullName"
-                             required #fullName="ngModel" placeholder="Your full name">
-                      <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
+                        <mat-label>Name</mat-label>
+                        <input matInput name="fullName" [(ngModel)]="orderDetails.fullName" required #fullName="ngModel"
+                            placeholder="Your full name">
+                        <mat-error *ngIf="fullName.invalid && fullName.touched">Name is required</mat-error>
                     </mat-form-field>
-                  
+
                     <mat-form-field appearance="outline" class="form-field w-100 mb-3">
-                      <mat-label>Address</mat-label>
-                      <input matInput name="fullAddress" [(ngModel)]="orderDetails.fullAddress"
-                             required #fullAddress="ngModel" placeholder="Shipping address">
-                      <mat-error *ngIf="fullAddress.invalid && fullAddress.touched">Address is required</mat-error>
+                        <mat-label>Address</mat-label>
+                        <input matInput name="fullAddress" [(ngModel)]="orderDetails.fullAddress" required
+                            #fullAddress="ngModel" placeholder="Shipping address">
+                        <mat-error *ngIf="fullAddress.invalid && fullAddress.touched">Address is required</mat-error>
                     </mat-form-field>
-                  
+
                     <mat-form-field appearance="outline" class="form-field w-100 mb-4">
-                      <mat-label>Phone Number</mat-label>
-                      <input matInput name="contactNumber" [(ngModel)]="orderDetails.contactNumber"
-                             required pattern="^[0-9]{10}$" #contactNumber="ngModel"
-                             placeholder="10-digit mobile number">
-                      <mat-error *ngIf="contactNumber.invalid && contactNumber.touched">
-                        Phone number must be 10 digits
-                      </mat-error>
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput name="contactNumber" [(ngModel)]="orderDetails.contactNumber" required
+                            pattern="^[0-9]{10}$" #contactNumber="ngModel" placeholder="10-digit mobile number">
+                        <mat-error *ngIf="contactNumber.invalid && contactNumber.touched">
+                            Phone number must be 10 digits
+                        </mat-error>
                     </mat-form-field>
-                  
+
                     <button type="submit" mat-flat-button color="primary" class="place-order-btn"
-                            [disabled]="orderForm.invalid">
-                      Place Order
+                        [disabled]="orderForm.invalid">
+                        Place Order
                     </button>
-                  
-                  </form>
-                  
+
+                </form>
+
             </div>
 
             <div class="col-md-6">
@@ -55,17 +54,17 @@
                         <tbody>
                             <tr *ngFor="let product of productDetails">
                                 <td>{{ product.productName }}</td>
-                                <td>{{ product.productPrice | currency }}</td>
+                                <td>{{ product.price | currency }}</td>
                                 <td>
-                                    <select #quantity
-                                        class="form-select form-select-sm w-auto mx-auto"
-                                        [ngModel]="getQuantityForProduct(product.productId)"
-                                        (change)="onQuantityChange(quantity.value, product.productId)">
-                                        <option *ngFor="let qty of [1,2,3]" [value]="qty">{{ qty }}</option>
+                                    <select [ngModel]="getOrderQuantityReference(product.productId)?.quantity"
+                                        (ngModelChange)="onQuantityChange($event, product.productId)">
+                                        <option *ngFor="let q of getQuantityOptions(product.availableQuantity)"
+                                            [value]="q">{{ q }}</option>
                                     </select>
+
                                 </td>
                                 <td>
-                                    {{getTotalForProduct(product.productId, product.productPrice) | currency}}
+                                    {{getTotalForProduct(product.productId, product.price) | currency}}
                                 </td>
                             </tr>
                             <tr>
@@ -77,7 +76,7 @@
                         </tbody>
                     </table>
 
-                    
+
                 </div>
             </div>
         </div>

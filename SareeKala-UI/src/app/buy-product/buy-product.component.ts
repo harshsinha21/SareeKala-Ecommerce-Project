@@ -13,6 +13,7 @@ import { ProductService } from '../_services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { AboutComponent } from "../about/about.component";
+import { ProductCheckoutDTO } from '../_model/product-checkout-dto.model';
 
 
 @Component({
@@ -25,7 +26,9 @@ import { AboutComponent } from "../about/about.component";
 })
 export class BuyProductComponent implements OnInit {
 
-  productDetails: Product[] = [];
+  isSingleProductCheckout: any = false;
+
+  productDetails: ProductCheckoutDTO[] = [];
 
   orderDetails: OrderDetails = {
     fullName: '',
@@ -37,22 +40,24 @@ export class BuyProductComponent implements OnInit {
     private productService: ProductService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.productDetails = this.activateRoute.snapshot.data['productDetails'];
-    this.productDetails.forEach(
-      x => this.orderDetails.orderProductQuantityList.push(
-        {productId: x.productId!, quantity: 1}
-      )
-    );
+    this.isSingleProductCheckout = this.activateRoute.snapshot.paramMap.get("isSingleProductCheckout");
+    this.productDetails.forEach(x => {
+      this.orderDetails.orderProductQuantityList.push({
+        productId: x.productId!,
+        quantity: x.quantity ?? 1 // or use: x.quantity || 1
+      });
+    });
     console.log("now printing product details and orderdetails");
     console.log(this.productDetails);
     console.log(this.orderDetails);
   }
 
   public placeOrder(orderForm: NgForm) {
-    this.productService.placeOrder(this.orderDetails).subscribe(
+    this.productService.placeOrder(this.orderDetails, this.isSingleProductCheckout).subscribe(
       (response) => {
         console.log(response);
         orderForm.reset;
@@ -78,24 +83,44 @@ export class BuyProductComponent implements OnInit {
     return product[0].quantity * productPrice;
   }
 
-  onQuantityChange(quantity: any, productId: any){
-    this.orderDetails.orderProductQuantityList.filter(
-      (orderProduct) => orderProduct.productId === productId)[0].quantity = quantity;
+  onQuantityChange(quantity: any, productId: any) {
+    const product = this.productDetails.find(p => p.productId === productId);
+    const cartItemId = product?.cartItemId;
+
+    const orderProduct = this.orderDetails.orderProductQuantityList.find(
+      (productQuantity) => productQuantity.productId === productId
+    );
+
+    if (orderProduct && cartItemId) {
+      orderProduct.quantity = quantity;
+      this.productService.updateCartItemQuantity(cartItemId, quantity).subscribe({
+        next: (resp) => console.log('Updating quantity for cartItemId:', cartItemId, 'to:', quantity),
+        error: (err) => console.error('Failed to update cart quantity', err)
+      });
+    }
   }
 
-  getTotalBill(){
+  getTotalBill() {
     let getTotal = 0;
     this.orderDetails.orderProductQuantityList.forEach(
       (productQuantity) => {
         const price = this.productDetails.filter(
-          product => product.productId === productQuantity.productId)[0].productPrice;
-        const productTotal = price * productQuantity.quantity; 
+          product => product.productId === productQuantity.productId)[0].price;
+        const productTotal = price * productQuantity.quantity;
         getTotal += productTotal;
       }
     );
     return getTotal;
   }
 
+  getQuantityOptions(max: number): number[] {
+    return Array.from({ length: max }, (_, i) => i + 1);
+  }
+
+  getOrderQuantityReference(productId: number | string) {
+    return this.orderDetails.orderProductQuantityList.find(p => p.productId === productId);
+  }
   
+
 
 }

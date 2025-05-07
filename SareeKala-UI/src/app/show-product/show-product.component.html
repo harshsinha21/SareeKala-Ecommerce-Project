@@ -31,6 +31,11 @@
         <td mat-cell *matCellDef="let element"> {{element.productDiscountedPrice}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+    </ng-container>
+
      <!-- Images -->
      <ng-container matColumnDef="Images">
         <th mat-header-cell *matHeaderCellDef> Images </th>

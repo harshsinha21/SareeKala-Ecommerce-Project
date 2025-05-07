@@ -11,6 +11,8 @@ public class Product {
     @Id
     private Integer productId;
     private String productName;
+
+    private Integer quantity;
     @Column(length = 2000)
     private String productDesc;
     private Double productPrice;
@@ -51,7 +53,13 @@ public class Product {
         this.productName = productName;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
     public String getProductDesc() {
         return productDesc;
     }

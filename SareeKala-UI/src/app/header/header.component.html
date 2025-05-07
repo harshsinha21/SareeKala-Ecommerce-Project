@@ -9,7 +9,6 @@
 
     <!-- NAV BUTTONS -->
     <button mat-button class="neutral-button" (click)="goHome()">Home</button>
-    <button mat-button class="neutral-button" (click)="goProducts()">Artwork</button>
     <button mat-button class="neutral-button" (click)="goAbout()">Our Story</button>
 
     <span class="space_login"></span>
@@ -41,11 +40,11 @@
       <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="orders()">
         Orders
       </button>
-      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="accounts()">
+      <!-- <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="accounts()">
         Account
-      </button>
-      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="cart()">
-        Cart
+      </button> -->
+      <button *ngIf="isUser()" mat-button class="neutral-button2" (click)="cart()"> 
+        <mat-icon>shopping_cart</mat-icon>
       </button>
     </div>
 

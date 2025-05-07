@@ -1,6 +1,7 @@
 package org.sareekala.backend.controller;
 
 import org.sareekala.backend.entity.Image;
+import org.sareekala.backend.entity.ProductCheckoutDTO;
 import org.sareekala.backend.entity.Product;
 import org.sareekala.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +71,12 @@ public class ProductController {
     }
 
     @PreAuthorize("hasRole('User')")
-    @GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
-    public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
-                                           @PathVariable(name = "productId") Integer productId) {
+    @GetMapping("/getProductDetails/{isSingleProductCheckout}/{productId}")
+    public List<ProductCheckoutDTO> getProductDetails(
+            @PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
+            @PathVariable(name = "productId") Integer productId) {
 
         return productService.getProductDetails(isSingleProductCheckout, productId);
     }
+
 }
