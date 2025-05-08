@@ -19,6 +19,12 @@ public class OrderDetailService {
 
     private static final String ORDER_PLACED  = "Placed";
 
+    private static final String KEY = "src/main/java/org/sareekala/backend/service/publish_key.pem";
+
+    private static final String KEY_SECRET = "src/main/java/org/sareekala/backend/service/secret_key.pem";
+
+    private static final String CURRENT = "CAD";
+
     @Autowired
     private OrderDetailDao orderDetailDao;
 
@@ -62,6 +68,10 @@ public class OrderDetailService {
         }
     }
 
+    public void createTransaction(Double amount) {
+        
+    }
+
     public void placeOrder(OrderInput orderInput, boolean isSingleProductCheckout) {
         List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
 
@@ -89,6 +99,8 @@ public class OrderDetailService {
 
             orderDetailDao.save(orderDetail);
         }
+
+
 
 
     }

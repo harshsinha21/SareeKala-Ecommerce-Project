@@ -41,4 +41,10 @@ public class OrderDetailController {
     public void markOrderStatus(@PathVariable(name = "orderId") Integer orderId) {
         orderDetailService.markOrderStatus(orderId);
     }
+
+    @PreAuthorize("hasRole('User')")
+    @GetMapping({"/createTransaction/{amount}"})
+    public void createTransaction(@PathVariable(name = "amount") Double amount) {
+
+    }
 }

@@ -34,3 +34,6 @@ build/
 
 #### KEYS #####
 src/main/java/org/sareekala/backend/util/*.pem
+src/main/java/org/sareekala/backend/service/*.pem
+src/main/resources/application.properties
+
