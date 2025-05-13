@@ -42,7 +42,7 @@ public class WebSecurityConfiguration implements WebMvcConfigurer {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/authenticate", "/registerNewUser", "/getAllProducts", "/getProductById/{productId}").permitAll()
+                        .requestMatchers("/authenticate", "/registerNewUser", "/getAllProducts", "/getProductById/{productId}", "/api/payment/webhook", "/order/session/**").permitAll()
                         .requestMatchers(HttpHeaders.ALLOW).permitAll()
                         .anyRequest().authenticated()
                 )

@@ -11,4 +11,6 @@ public interface OrderDetailDao extends CrudRepository<OrderDetail, Integer> {
     public List<OrderDetail> findByUser(User user);
 
     public List<OrderDetail> findByOrderStatus(String status);
+
+    OrderDetail findBySessionId(String sessionId);
 }

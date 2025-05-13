@@ -25,8 +25,9 @@ import { AllOrdersComponent } from './all-orders/all-orders.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full'}, //default route
+    { path: 'order-success', component: OrderSuccessComponent },
     { path: 'home', component: HomeComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full'}, //default route
     { path: 'admin', component: AdminComponent, canActivate: [authGuard], data:{roles:['Admin']} },
     { path: 'user', component: UserComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'about', component: AboutComponent },
@@ -39,7 +40,7 @@ export const routes: Routes = [
     { path: 'showProduct', component: ShowProductComponent, canActivate: [authGuard], data:{roles:['Admin']}  },
     { path: 'viewDetails', component: ViewDetailsComponent, resolve:{product: ProductResolverService}  },
     { path: 'buyProduct', component: BuyProductComponent, canActivate: [authGuard], data:{roles:['User']}, resolve:{productDetails: BuyProductResolverService}  },
-    { path: 'order-success', component: OrderSuccessComponent, canActivate: [authGuard], data:{roles:['User']} },
+    
     { path: 'cart', component: CartComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'myorders', component: MyOrdersComponent, canActivate: [authGuard], data:{roles:['User']} },
     { path: 'allOrders', component: AllOrdersComponent, canActivate: [authGuard], data:{roles:['Admin']} },

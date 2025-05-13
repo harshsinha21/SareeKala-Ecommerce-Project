@@ -17,6 +17,7 @@
                         <input matInput name="fullAddress" [(ngModel)]="orderDetails.fullAddress" required
                             #fullAddress="ngModel" placeholder="Shipping address">
                         <mat-error *ngIf="fullAddress.invalid && fullAddress.touched">Address is required</mat-error>
+                        <mat-error *ngIf="!isAddressInCanada(orderDetails.fullAddress) && fullAddress.touched">Please enter a valid Canadian address.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline" class="form-field w-100 mb-4">

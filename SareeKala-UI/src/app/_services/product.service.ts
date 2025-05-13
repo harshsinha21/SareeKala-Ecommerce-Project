@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../_model/product.model';
-import { OrderDetails } from '../_model/order-detais.model';
+import { OrderDetails } from '../_model/order-details.model';
 import { Observable } from 'rxjs';
 import { ProductCheckoutDTO } from '../_model/product-checkout-dto.model';
 import { OrderHistory } from '../_model/order-history.model';
+import { TransactionResponse } from '../_model/transaction-response.model';
 
 
 @Injectable({
@@ -13,6 +14,10 @@ import { OrderHistory } from '../_model/order-history.model';
 export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
+
+  public createTransaction(orderDetails: OrderDetails): Observable<TransactionResponse> {
+    return this.httpClient.post<TransactionResponse>("http://localhost:9090/createTransaction", orderDetails);
+  }  
 
   public markAsDelivered(orderId: number) {
     return this.httpClient.get("http://localhost:9090/updateOrderStatus/" + orderId);

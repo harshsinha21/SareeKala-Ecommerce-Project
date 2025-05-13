@@ -5,11 +5,15 @@ import jakarta.persistence.*;
 @Entity
 public class User {
 
+
     @Id
+    @Column(nullable = false, unique = true)
     private String userName;
     private String userFirstName;
     private String userLastName;
+    @Column(nullable = false)
     private String userPassword;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",

@@ -4,6 +4,7 @@ package org.sareekala.backend.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "order_detail")
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +14,9 @@ public class OrderDetail {
     private String orderContactNumber;
     private String orderStatus;
     private Double orderAmount;
+    private String sessionId;
+
+
 
     @ManyToOne
     private Product product;
@@ -30,6 +34,14 @@ public class OrderDetail {
         this.orderAmount = orderAmount;
         this.product = product;
         this.user = user;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Product getProduct() {
